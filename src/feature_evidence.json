@@ -1,0 +1,54 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-global-theme-color-tokens-to-match-the-provided-brand-palette-primary-background-0b1c2d-gold-accent-c6a75e-heading-text-f5f5f5-sub-text-b8c0cc",
+      "featureTitle": "Update the global theme color tokens to match the provided brand palette: Primary Background #0B1C2D, Gold Accent #C6A75E, Heading Text #F5F5F5, Sub Text #B8C0CC.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-14"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-replace-section-and-component-level-hardcoded-hex-colors-with-theme-tokens-or-the-new-palette-values-so-that-the-new-brand-palette-is-applied-consistently-across-the-entire-ui",
+      "featureTitle": "Replace section- and component-level hardcoded hex colors with theme tokens (or the new palette values) so that the new brand palette is applied consistently across the entire UI.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/FloatingWhatsAppButton.tsx",
+        "frontend/src/components/layout/SiteFooter.tsx",
+        "frontend/src/components/layout/SiteHeader.tsx",
+        "frontend/src/components/sections/AboutSection.tsx",
+        "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
+        "frontend/src/components/sections/HeroSection.tsx",
+        "frontend/src/components/sections/InvestorCalculatorSection.tsx",
+        "frontend/src/components/sections/LeadCaptureFormSection.tsx",
+        "frontend/src/components/sections/TestimonialsSection.tsx",
+        "frontend/src/components/sections/WhyInvestPuneSection.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-15"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

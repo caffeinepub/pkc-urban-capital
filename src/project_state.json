@@ -1,0 +1,194 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Build a premium dark-themed, mobile-responsive commercial real estate lead-generation website for PKC Urban Capital (Pune, India) with gold accents and investor-focused messaging, including property listings with filters, ROI calculator, testimonials, lead form, and WhatsApp CTAs. Updated brand palette: primary background #0B1C2D, gold accent #C6A75E, heading text #F5F5F5, sub text #B8C0CC.",
+  "architectural_notes": [
+    "Mobile-responsive layout optimized for lead generation and conversions (clear CTAs, WhatsApp contact points).",
+    "Featured properties should support client-side filtering by location, budget, and property type.",
+    "Use updated brand palette across the site: Primary Background #0B1C2D, Gold Accent #C6A75E, Heading Text #F5F5F5, Sub Text #B8C0CC."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-create-a-mobile-responsive-premium-dark-themed-website-for-pkc-urban-capital-with-a-dark-slate-background-0f172a-gold-accent-highlights-luxury-corporate-investor-focused-visual-style-bold-typography-for-headings-and-a-clean-modern-layout-used-consistently-across-all-sections",
+      "title": "Create a mobile-responsive, premium dark-themed website for “PKC Urban Capital” with a dark slate background (#0f172a), gold accent highlights, luxury/corporate/investor-focused visual style, bold typography for headings, and a clean modern layout used consistently across all sections.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-hero-section-with-the-exact-headline-and-subheadline-provided-and-two-primary-ctas-view-investment-options-and-get-private-consultation-ctas-must-scroll-navigate-to-the-featured-investment-properties-section-and-lead-capture-form-section-respectively",
+      "title": "Implement the Hero section with the exact headline and subheadline provided and two primary CTAs: “View Investment Options” and “Get Private Consultation”. CTAs must scroll/navigate to the Featured Investment Properties section and Lead Capture Form section respectively.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-about-section-that-positions-pkc-urban-capital-as-a-strategic-commercial-investment-advisory-firm-and-clearly-presents-the-four-highlight-points-builder-direct-inventory-strong-negotiation-support-roi-focused-consulting-and-end-to-end-documentation-support",
+      "title": "Implement an About section that positions PKC Urban Capital as a strategic commercial investment advisory firm and clearly presents the four highlight points: builder-direct inventory, strong negotiation support, ROI-focused consulting, and end-to-end documentation support.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-featured-investment-properties-section-that-displays-a-list-of-commercial-investment-properties-and-supports-filtering-by-location-budget-and-property-type-each-property-card-must-show-carpet-area-price-expected-rent-roi-possession-status-and-a-whatsapp-get-best-price-button",
+      "title": "Implement a Featured Investment Properties section that displays a list of commercial investment properties and supports filtering by Location, Budget, and Property Type. Each property card must show: Carpet Area, Price, Expected Rent, ROI %, Possession Status, and a WhatsApp “Get Best Price” button.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-why-invest-in-pune-section-that-includes-the-provided-points-it-hub-growth-metro-connectivity-high-rental-demand-and-commercial-appreciation-written-in-a-confident-premium-investor-focused-tone",
+      "title": "Implement a “Why Invest in Pune” section that includes the provided points: IT Hub Growth, Metro Connectivity, High Rental Demand, and Commercial Appreciation, written in a confident, premium, investor-focused tone.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-investor-calculator-section-with-inputs-for-property-price-and-expected-monthly-rent-and-an-roi-output-that-updates-when-inputs-change",
+      "title": "Implement an Investor Calculator section with inputs for Property Price and Expected Monthly Rent and an ROI Output that updates when inputs change.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-testimonials-section-with-multiple-testimonial-cards-suitable-for-an-investor-focused-commercial-real-estate-advisory-brand-content-can-be-sample-testimonials-if-no-real-testimonials-are-provided",
+      "title": "Implement a Testimonials section with multiple testimonial cards suitable for an investor-focused commercial real estate advisory brand (content can be sample testimonials if no real testimonials are provided).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-lead-capture-form-section-optimized-for-lead-generation-with-fields-name-phone-budget-property-type-and-investment-or-self-use-provide-clear-validation-and-a-success-state-after-submission",
+      "title": "Implement a Lead Capture Form section optimized for lead generation with fields: Name, Phone, Budget, Property Type, and Investment or Self Use. Provide clear validation and a success state after submission.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-floating-whatsapp-contact-button-fixed-to-the-bottom-right-of-the-viewport-across-the-site-that-opens-whatsapp-chat-using-a-configurable-number-and-a-prefilled-investor-focused-message",
+      "title": "Add a floating WhatsApp contact button fixed to the bottom-right of the viewport across the site that opens WhatsApp chat using a configurable number and a prefilled investor-focused message.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-user-facing-text-across-the-site-is-in-english-and-matches-a-confident-premium-investor-focused-tone",
+      "title": "Ensure all user-facing text across the site is in English and matches a confident, premium, investor-focused tone.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-static-sample-data-for-properties-that-reflects-the-specified-pune-areas-wakad-baner-balewadi-hinjewadi-pimple-saudagar-and-the-property-types-offices-showrooms-retail-shops-high-roi-assets-so-filters-and-cards-are-functional-without-external-integrations",
+      "title": "Add static sample data for properties that reflects the specified Pune areas (Wakad, Baner, Balewadi, Hinjewadi, Pimple Saudagar) and the property types (offices, showrooms, retail shops, high ROI assets) so filters and cards are functional without external integrations.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-generated-brand-visuals-as-static-assets-and-integrate-them-into-the-ui-e-g-navbar-hero-a-pkc-urban-capital-wordmark-and-a-subtle-dark-hero-background-texture-consistent-with-a-premium-commercial-real-estate-brand",
+      "title": "Add generated brand visuals as static assets and integrate them into the UI (e.g., navbar/hero): a PKC Urban Capital wordmark and a subtle dark hero background texture consistent with a premium commercial real estate brand.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-global-theme-color-tokens-to-match-the-provided-brand-palette-primary-background-0b1c2d-gold-accent-c6a75e-heading-text-f5f5f5-sub-text-b8c0cc",
+      "title": "Update the global theme color tokens to match the provided brand palette: Primary Background #0B1C2D, Gold Accent #C6A75E, Heading Text #F5F5F5, Sub Text #B8C0CC.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-section-and-component-level-hardcoded-hex-colors-with-theme-tokens-or-the-new-palette-values-so-that-the-new-brand-palette-is-applied-consistently-across-the-entire-ui",
+      "title": "Replace section- and component-level hardcoded hex colors with theme tokens (or the new palette values) so that the new brand palette is applied consistently across the entire UI.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create premium dark-themed (dark slate #0f172a + gold accents) commercial real estate website for PKC Urban Capital with luxury corporate investor-focused design and bold typography",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Add Hero section with specified headline/subheadline and CTAs: View Investment Options + Get Private Consultation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add About section positioning PKC Urban Capital as commercial investment advisory highlighting builder-direct inventory, negotiation support, ROI consulting, and documentation support",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Add Featured Investment Properties section with filters (location, budget, property type) and property cards showing carpet area, price, expected rent, ROI %, possession status, and WhatsApp 'Get Best Price' button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add 'Why Invest in Pune' section covering IT hub growth, metro connectivity, high rental demand, and commercial appreciation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add Investor Calculator section: simple ROI calculator using property price and expected monthly rent to output ROI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add Testimonials section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add Lead Capture Form with fields: name, phone, budget, property type, and investment vs self use",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add floating WhatsApp button (bottom right) for quick contact/lead capture",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Backend: add a Motoko data model and API to store and retrieve submitted leads from the Lead Capture Form, including timestamp and the exact field values submitted.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "PKC Urban Capital",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

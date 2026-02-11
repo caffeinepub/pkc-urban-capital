@@ -1,0 +1,96 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Apply new PKC Urban Capital brand palette via theme tokens and remove hardcoded colors",
+  "requirements": [
+    {
+      "id": "REQ-14",
+      "summary": "Update global Tailwind/CSS-variable theme tokens to match the new background, gold accent, and text colors.",
+      "acceptanceCriteria": [
+        "In the dark theme, primary background renders as #0B1C2D across the site (no remaining #0f172a/#0a0f1a hardcoded backgrounds).",
+        "Primary/accent UI elements (buttons, highlights, icons using theme tokens like primary/accent/ring) render as gold #C6A75E (or an OKLCH equivalent that visually matches #C6A75E).",
+        "Heading text renders as #F5F5F5 (or a visually matching token equivalent), and secondary/subtext renders as #B8C0CC (or a visually matching token equivalent).",
+        "Theme tokens remain compatible with the existing Tailwind + CSS variable setup (e.g., oklch(var(--...)) usage continues to work)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update the `.dark` (and any necessary supporting) CSS variable tokens to visually match: background #0B1C2D, primary/accent/ring gold #C6A75E, heading/foreground #F5F5F5, muted-foreground/subtext #B8C0CC, while preserving the existing OKLCH CSS variable pattern used by Tailwind (e.g., `oklch(var(--token) / <alpha-value>)`)."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Verify Tailwind color token mappings correctly reflect updated CSS variables (background/foreground/primary/accent/ring/muted) and remain compatible with the existing `oklch(var(--...))` setup; adjust only if required to ensure alpha variants (e.g., `/95`, `/80`) continue to work."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Replace hardcoded hex colors in layout/sections/components with theme tokens so the new palette applies consistently site-wide.",
+      "acceptanceCriteria": [
+        "No core layout/section components use the old hardcoded background colors (e.g., #0f172a, #0a0f1a) for page/section backgrounds; they use theme tokens or the new #0B1C2D palette.",
+        "Header background and transparency styling uses the new primary background color (including any /95, /80 variants).",
+        "Hero section base background and gradient overlay are updated to the new primary background color and remain visually legible with the texture overlay.",
+        "Floating WhatsApp button focus ring offset color matches the updated primary background (replacing any old background hex usage)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Replace the app shell hardcoded background (`bg-[#0f172a]`) with theme tokens (e.g., `bg-background`) so the global background follows the updated palette."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded header background colors (`bg-[#0f172a]/...`) with theme tokens (e.g., `bg-background/95` and `supports-[backdrop-filter]:bg-background/80`) to match the new primary background and maintain translucency behavior."
+        },
+        {
+          "path": "frontend/src/components/sections/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded hero section base background and gradient overlay colors (`#0f172a` variants) with theme tokens derived from the updated background (e.g., `bg-background` and gradient `from-background/...`), keeping the texture overlay legible and consistent with the new palette."
+        },
+        {
+          "path": "frontend/src/components/sections/AboutSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded section background (`bg-[#0a0f1a]`) with theme tokens so the section background is driven by the updated palette."
+        },
+        {
+          "path": "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded section background (`bg-[#0f172a]`) with theme tokens to ensure consistent application of the updated primary background."
+        },
+        {
+          "path": "frontend/src/components/sections/InvestorCalculatorSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded section background (`bg-[#0f172a]`) with theme tokens so the calculator section uses the updated palette consistently."
+        },
+        {
+          "path": "frontend/src/components/sections/LeadCaptureFormSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded section background (`bg-[#0f172a]` in both form and success views) with theme tokens so the lead form section inherits the updated primary background."
+        },
+        {
+          "path": "frontend/src/components/sections/TestimonialsSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded section background (`bg-[#0a0f1a]`) with theme tokens so testimonials styling matches the updated palette."
+        },
+        {
+          "path": "frontend/src/components/sections/WhyInvestPuneSection.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded section background (`bg-[#0a0f1a]`) with theme tokens so the section aligns with the updated palette."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Replace hardcoded footer background (`bg-[#0a0f1a]`) with theme tokens so the footer matches the updated primary background palette."
+        },
+        {
+          "path": "frontend/src/components/FloatingWhatsAppButton.tsx",
+          "operation": "modify",
+          "description": "Update the WhatsApp button focus ring offset styling to use theme tokens (e.g., `focus:ring-offset-background`) instead of the old hardcoded background hex (`focus:ring-offset-[#0f172a]`), keeping the ring color aligned with the WhatsApp green as needed."
+        }
+      ]
+    }
+  ]
+}
