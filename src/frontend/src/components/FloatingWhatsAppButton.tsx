@@ -3,6 +3,7 @@ import { generateWhatsAppLink } from '../config/whatsapp';
 
 export default function FloatingWhatsAppButton() {
   const handleClick = () => {
+    // Generate clean WhatsApp link without prefilled message
     const link = generateWhatsAppLink();
     window.open(link, '_blank');
   };

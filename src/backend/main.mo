@@ -5,6 +5,8 @@ import Runtime "mo:core/Runtime";
 import MixinAuthorization "authorization/MixinAuthorization";
 import AccessControl "authorization/access-control";
 
+
+
 actor {
   // Initialize the user system state
   let accessControlState = AccessControl.initState();
@@ -141,5 +143,93 @@ actor {
         Runtime.trap("Lead not found");
       };
     };
+  };
+
+  // Commercial Project Listings
+  public type CommercialProject = {
+    id : Nat;
+    title : Text;
+    location : Text;
+    carpetArea : Text;
+    price : Text;
+    highlights : [Text];
+    contactDetails : Text;
+    lastUpdated : Time.Time;
+  };
+
+  let commercialProjects = Map.empty<Nat, CommercialProject>();
+  var nextCommercialProjectId = 0;
+
+  // Admin-only: Create new commercial project
+  public shared ({ caller }) func createCommercialProject(project : CommercialProject) : async Nat {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can create commercial projects");
+    };
+
+    let projectId = nextCommercialProjectId;
+    nextCommercialProjectId += 1;
+
+    let newProject : CommercialProject = {
+      id = projectId;
+      title = project.title;
+      location = project.location;
+      carpetArea = project.carpetArea;
+      price = project.price;
+      highlights = project.highlights;
+      contactDetails = project.contactDetails;
+      lastUpdated = Time.now();
+    };
+
+    commercialProjects.add(projectId, newProject);
+    projectId;
+  };
+
+  // Admin-only: Update existing commercial project
+  public shared ({ caller }) func updateCommercialProject(id : Nat, updatedProject : CommercialProject) : async () {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can update commercial projects");
+    };
+
+    switch (commercialProjects.get(id)) {
+      case (?_) {
+        let newProject : CommercialProject = {
+          id;
+          title = updatedProject.title;
+          location = updatedProject.location;
+          carpetArea = updatedProject.carpetArea;
+          price = updatedProject.price;
+          highlights = updatedProject.highlights;
+          contactDetails = updatedProject.contactDetails;
+          lastUpdated = Time.now();
+        };
+        commercialProjects.add(id, newProject);
+      };
+      case (null) {
+        Runtime.trap("Commercial project not found");
+      };
+    };
+  };
+
+  // Admin-only: Delete commercial project
+  public shared ({ caller }) func deleteCommercialProject(id : Nat) : async () {
+    if (not AccessControl.isAdmin(accessControlState, caller)) {
+      Runtime.trap("Unauthorized: Only admins can delete commercial projects");
+    };
+
+    if (commercialProjects.containsKey(id)) {
+      commercialProjects.remove(id);
+    } else {
+      Runtime.trap("Commercial project not found");
+    };
+  };
+
+  // Public: Get all commercial projects
+  public query ({ caller }) func getAllCommercialProjects() : async [CommercialProject] {
+    commercialProjects.values().toArray();
+  };
+
+  // Public: Get single commercial project by ID
+  public query ({ caller }) func getCommercialProject(id : Nat) : async ?CommercialProject {
+    commercialProjects.get(id);
   };
 };

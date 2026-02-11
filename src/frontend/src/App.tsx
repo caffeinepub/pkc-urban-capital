@@ -1,15 +1,26 @@
 import { useRef } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
+import { Toaster } from './components/ui/sonner';
 import SiteHeader from './components/layout/SiteHeader';
 import HeroSection from './components/sections/HeroSection';
 import AboutSection from './components/sections/AboutSection';
 import FeaturedPropertiesSection from './components/sections/FeaturedPropertiesSection';
 import WhyInvestPuneSection from './components/sections/WhyInvestPuneSection';
 import InvestorCalculatorSection from './components/sections/InvestorCalculatorSection';
-import TestimonialsSection from './components/sections/TestimonialsSection';
 import LeadCaptureFormSection from './components/sections/LeadCaptureFormSection';
 import SiteFooter from './components/layout/SiteFooter';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
+import FloatingCallButton from './components/FloatingCallButton';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function App() {
   const propertiesRef = useRef<HTMLElement>(null);
@@ -24,26 +35,29 @@ export default function App() {
   };
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-      <div className="min-h-screen bg-background text-foreground">
-        <SiteHeader onConsultationClick={scrollToLeadForm} />
-        
-        <main>
-          <HeroSection 
-            onViewInvestments={scrollToProperties}
-            onGetConsultation={scrollToLeadForm}
-          />
-          <AboutSection />
-          <FeaturedPropertiesSection ref={propertiesRef} />
-          <WhyInvestPuneSection />
-          <InvestorCalculatorSection />
-          <TestimonialsSection />
-          <LeadCaptureFormSection ref={leadFormRef} />
-        </main>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <div className="min-h-screen bg-background text-foreground pb-24">
+          <SiteHeader onConsultationClick={scrollToLeadForm} />
+          
+          <main>
+            <HeroSection 
+              onViewInvestments={scrollToProperties}
+              onGetConsultation={scrollToLeadForm}
+            />
+            <AboutSection />
+            <FeaturedPropertiesSection ref={propertiesRef} />
+            <WhyInvestPuneSection />
+            <InvestorCalculatorSection />
+            <LeadCaptureFormSection ref={leadFormRef} />
+          </main>
 
-        <SiteFooter />
-        <FloatingWhatsAppButton />
-      </div>
-    </ThemeProvider>
+          <SiteFooter />
+          <FloatingWhatsAppButton />
+          <FloatingCallButton />
+        </div>
+        <Toaster />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }

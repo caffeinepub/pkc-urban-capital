@@ -1,4 +1,4 @@
-import { ArrowRight, TrendingUp } from 'lucide-react';
+import { ArrowRight, Award } from 'lucide-react';
 import { COPY } from '../../content/copy';
 
 interface HeroSectionProps {
@@ -26,8 +26,8 @@ export default function HeroSection({ onViewInvestments, onGetConsultation }: He
         <div className="mx-auto max-w-4xl text-center space-y-8">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-4 py-2 text-sm text-primary backdrop-blur-sm">
-            <TrendingUp className="h-4 w-4" />
-            <span className="font-medium">Premium Commercial Real Estate</span>
+            <Award className="h-4 w-4" />
+            <span className="font-medium">Authorized Channel Partner – Commercial Real Estate</span>
           </div>
 
           {/* Headline */}
@@ -42,7 +42,7 @@ export default function HeroSection({ onViewInvestments, onGetConsultation }: He
 
           {/* Description */}
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Builder-direct inventory with exceptional ROI in Pune's fastest-growing commercial corridors
+            Builder-direct inventory across Pune's growing commercial corridors
           </p>
 
           {/* CTAs */}

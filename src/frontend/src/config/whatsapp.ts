@@ -1,11 +1,20 @@
+import { CONTACT_CONFIG } from './contact';
+
 export const WHATSAPP_CONFIG = {
-  phoneNumber: '919876543210', // Replace with actual WhatsApp number (country code + number, no + or spaces)
-  defaultMessage: 'Hi, I am interested in commercial investment properties in Pune. Please share more details.'
+  phoneNumber: CONTACT_CONFIG.whatsappPhone,
 };
 
 export function generateWhatsAppLink(message?: string): string {
-  const encodedMessage = encodeURIComponent(message || WHATSAPP_CONFIG.defaultMessage);
-  return `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}?text=${encodedMessage}`;
+  const baseUrl = `https://wa.me/${WHATSAPP_CONFIG.phoneNumber}`;
+  
+  // Only append ?text= if a message is explicitly provided and non-empty
+  if (message && message.trim().length > 0) {
+    const encodedMessage = encodeURIComponent(message);
+    return `${baseUrl}?text=${encodedMessage}`;
+  }
+  
+  // Return clean link without query string
+  return baseUrl;
 }
 
 export function generatePropertyWhatsAppLink(propertyName: string, location: string): string {

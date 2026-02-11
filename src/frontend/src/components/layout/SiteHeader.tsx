@@ -1,4 +1,6 @@
-import { Building2 } from 'lucide-react';
+import { Building2, Phone } from 'lucide-react';
+import { CONTACT_CONFIG } from '../../config/contact';
+import LoginButton from '../auth/LoginButton';
 
 interface SiteHeaderProps {
   onConsultationClick: () => void;
@@ -16,16 +18,28 @@ export default function SiteHeader({ onConsultationClick }: SiteHeaderProps) {
             <h1 className="text-xl font-heading font-bold text-primary tracking-tight">
               PKC Urban Capital
             </h1>
-            <p className="text-xs text-muted-foreground">Premium Commercial Advisory</p>
+            <p className="text-xs text-muted-foreground hidden sm:block">Authorized Channel Partner</p>
           </div>
         </div>
 
-        <button
-          onClick={onConsultationClick}
-          className="hidden md:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 shadow-gold-glow"
-        >
-          Get Consultation
-        </button>
+        <div className="flex items-center gap-3">
+          <LoginButton />
+          
+          <a
+            href={CONTACT_CONFIG.telLink}
+            className="inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 md:px-6"
+          >
+            <Phone className="h-4 w-4" />
+            <span className="hidden sm:inline">Call Now</span>
+          </a>
+          
+          <button
+            onClick={onConsultationClick}
+            className="hidden md:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring border border-primary/50 bg-transparent text-primary hover:bg-primary/10 h-10 px-6"
+          >
+            Get Consultation
+          </button>
+        </div>
       </div>
     </header>
   );

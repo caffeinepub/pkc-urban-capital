@@ -1,56 +1,52 @@
 {
   "kind": "build_request",
-  "title": "Update PKC Urban Capital brand palette to new background, gold accent, and text colors",
+  "title": "Make WhatsApp contact links cleaner and simpler",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Update the global theme color tokens to match the provided brand palette: Primary Background #0B1C2D, Gold Accent #C6A75E, Heading Text #F5F5F5, Sub Text #B8C0CC.",
+      "id": "REQ-26",
+      "text": "Update the WhatsApp link generation so the default WhatsApp CTA uses a clean, minimal URL (no prefilled message query string), while still supporting an optional prefilled message when explicitly requested.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "🎨 Primary Background:\n\n#0B1C2D\n\n🎨 Gold Accent:\n\n#C6A75E\n\n🎨 Heading Text:\n\n#F5F5F5\n\n🎨 Sub Text:\n\n#B8C0CC"
+          "Bhai link clean bnao na easy wala"
         ]
       },
       "acceptanceCriteria": [
-        "In the dark theme, primary background renders as #0B1C2D across the site (no remaining #0f172a/#0a0f1a hardcoded backgrounds).",
-        "Primary/accent UI elements (buttons, highlights, icons using theme tokens like primary/accent/ring) render as gold #C6A75E (or an OKLCH equivalent that visually matches #C6A75E).",
-        "Heading text renders as #F5F5F5 (or a visually matching token equivalent), and secondary/subtext renders as #B8C0CC (or a visually matching token equivalent).",
-        "Theme tokens remain compatible with the existing Tailwind + CSS variable setup (e.g., oklch(var(--...)) usage continues to work)."
+        "When no message is provided, WhatsApp links resolve to the clean format `https://wa.me/<number>` with no `?text=` query string.",
+        "When a message is explicitly provided (e.g., property-specific inquiry), the link includes a `?text=` query string with proper URL encoding.",
+        "All WhatsApp links continue to use the centralized `CONTACT_CONFIG.whatsappPhone` number."
       ]
     },
     {
-      "id": "REQ-15",
-      "text": "Replace section- and component-level hardcoded hex colors with theme tokens (or the new palette values) so that the new brand palette is applied consistently across the entire UI.",
+      "id": "REQ-27",
+      "text": "Update all WhatsApp CTA entry points (including the floating WhatsApp button and any card-level WhatsApp actions that use the default message) to use the new clean default WhatsApp link behavior.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "🎨 Primary Background:\n\n#0B1C2D\n\n🎨 Gold Accent:\n\n#C6A75E\n\n🎨 Heading Text:\n\n#F5F5F5\n\n🎨 Sub Text:\n\n#B8C0CC"
+          "Bhai link clean bnao na easy wala"
         ]
       },
       "acceptanceCriteria": [
-        "No core layout/section components use the old hardcoded background colors (e.g., #0f172a, #0a0f1a) for page/section backgrounds; they use theme tokens or the new #0B1C2D palette.",
-        "Header background and transparency styling uses the new primary background color (including any /95, /80 variants).",
-        "Hero section base background and gradient overlay are updated to the new primary background color and remain visually legible with the texture overlay.",
-        "Floating WhatsApp button focus ring offset color matches the updated primary background (replacing any old background hex usage)."
+        "Clicking the floating WhatsApp button opens WhatsApp using the clean `wa.me/<number>` link (no prefilled message).",
+        "Any CTA that previously called `generateWhatsAppLink()` with no arguments now opens WhatsApp using the clean link.",
+        "Property/project-specific CTAs that intentionally include context may still open with a prefilled message (short and readable), using the message-enabled link generation path."
       ]
     }
   ],
   "constraints": [
-    "Do not edit any files under frontend/src/components/ui (compose them as-is).",
-    "Do not modify immutable paths listed in SYSTEM_CONTEXT (frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui).",
-    "Keep all user-facing text in English."
+    "Do not edit files under frontend/src/components/ui (read-only Shadcn components).",
+    "Keep changes within the existing React + TypeScript + Tailwind structure; no external link shortener services."
   ],
   "nonGoals": [
-    "Do not change site content/copy beyond what is required to apply the new palette.",
-    "Do not add new sections or features beyond the palette update.",
-    "No backend changes are required for this request."
+    "Adding third-party link shorteners (e.g., Bitly) or any external integrations.",
+    "Changing the site’s contact phone number configuration (only link cleanliness is in scope here)."
   ],
   "imageRequirements": {
     "required": [],

@@ -1,4 +1,5 @@
 import { Building2, MapPin, Phone, Mail } from 'lucide-react';
+import { CONTACT_CONFIG } from '../../config/contact';
 
 export default function SiteFooter() {
   const currentYear = new Date().getFullYear();
@@ -21,7 +22,7 @@ export default function SiteFooter() {
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              Premium Commercial Investment Advisory
+              Authorized Channel Partner – Commercial Real Estate
             </p>
           </div>
 
@@ -60,7 +61,6 @@ export default function SiteFooter() {
               <li>Premium Showrooms</li>
               <li>Retail Shops</li>
               <li>Commercial Complexes</li>
-              <li>High ROI Assets</li>
             </ul>
           </div>
 
@@ -70,15 +70,17 @@ export default function SiteFooter() {
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                +91 98765 43210
+                <a href={CONTACT_CONFIG.telLink} className="hover:text-primary transition-colors">
+                  {CONTACT_CONFIG.displayPhone}
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                invest@pkcurban.com
+                {CONTACT_CONFIG.email}
               </li>
               <li className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
-                Pune, Maharashtra
+                {CONTACT_CONFIG.location}
               </li>
             </ul>
           </div>

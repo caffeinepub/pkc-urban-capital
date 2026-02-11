@@ -5,22 +5,22 @@ const reasons = [
   {
     icon: Briefcase,
     title: 'IT Hub Growth',
-    description: 'Home to 1000+ IT companies and MNCs, driving unprecedented demand for premium commercial spaces in Hinjewadi, Baner, and Wakad corridors.'
+    description: 'Home to numerous IT companies and MNCs, driving demand for commercial spaces in Hinjewadi, Baner, and Wakad corridors.'
   },
   {
     icon: Train,
     title: 'Metro Connectivity',
-    description: 'Expanding metro network connecting key commercial zones, significantly boosting property values and rental yields across major business districts.'
+    description: 'Expanding metro network connecting key commercial zones, improving accessibility and property values across major business districts.'
   },
   {
     icon: Users,
-    title: 'High Rental Demand',
-    description: 'Consistent influx of professionals and businesses ensures stable, high-yield rental income with minimal vacancy periods.'
+    title: 'Rental Demand',
+    description: 'Consistent influx of professionals and businesses ensures stable rental income with good occupancy rates.'
   },
   {
     icon: TrendingUp,
     title: 'Commercial Appreciation',
-    description: 'Pune commercial real estate has shown 12-15% annual appreciation, outperforming residential and most other asset classes.'
+    description: 'Pune commercial real estate has shown steady appreciation, performing well compared to other asset classes.'
   }
 ];
 

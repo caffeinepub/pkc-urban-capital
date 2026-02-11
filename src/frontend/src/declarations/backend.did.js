@@ -13,6 +13,17 @@ export const UserRole = IDL.Variant({
   'user' : IDL.Null,
   'guest' : IDL.Null,
 });
+export const Time = IDL.Int;
+export const CommercialProject = IDL.Record({
+  'id' : IDL.Nat,
+  'title' : IDL.Text,
+  'carpetArea' : IDL.Text,
+  'lastUpdated' : Time,
+  'highlights' : IDL.Vec(IDL.Text),
+  'price' : IDL.Text,
+  'location' : IDL.Text,
+  'contactDetails' : IDL.Text,
+});
 export const PropertyType = IDL.Variant({
   'commercial' : IDL.Null,
   'house' : IDL.Null,
@@ -31,7 +42,6 @@ export const LeadCaptureFormData = IDL.Record({
   'phone' : IDL.Text,
   'budget' : IDL.Text,
 });
-export const Time = IDL.Int;
 export const Lead = IDL.Record({
   'id' : IDL.Nat,
   'formData' : LeadCaptureFormData,
@@ -43,10 +53,22 @@ export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'createCommercialProject' : IDL.Func([CommercialProject], [IDL.Nat], []),
+  'deleteCommercialProject' : IDL.Func([IDL.Nat], [], []),
   'deleteLead' : IDL.Func([IDL.Nat], [], []),
+  'getAllCommercialProjects' : IDL.Func(
+      [],
+      [IDL.Vec(CommercialProject)],
+      ['query'],
+    ),
   'getAllLeads' : IDL.Func([], [IDL.Vec(Lead)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getCommercialProject' : IDL.Func(
+      [IDL.Nat],
+      [IDL.Opt(CommercialProject)],
+      ['query'],
+    ),
   'getLead' : IDL.Func([IDL.Nat], [Lead], ['query']),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
@@ -56,6 +78,7 @@ export const idlService = IDL.Service({
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'submitLead' : IDL.Func([LeadCaptureFormData], [IDL.Nat], []),
+  'updateCommercialProject' : IDL.Func([IDL.Nat, CommercialProject], [], []),
   'updateLead' : IDL.Func([IDL.Nat, LeadCaptureFormData], [], []),
 });
 
@@ -66,6 +89,17 @@ export const idlFactory = ({ IDL }) => {
     'admin' : IDL.Null,
     'user' : IDL.Null,
     'guest' : IDL.Null,
+  });
+  const Time = IDL.Int;
+  const CommercialProject = IDL.Record({
+    'id' : IDL.Nat,
+    'title' : IDL.Text,
+    'carpetArea' : IDL.Text,
+    'lastUpdated' : Time,
+    'highlights' : IDL.Vec(IDL.Text),
+    'price' : IDL.Text,
+    'location' : IDL.Text,
+    'contactDetails' : IDL.Text,
   });
   const PropertyType = IDL.Variant({
     'commercial' : IDL.Null,
@@ -85,7 +119,6 @@ export const idlFactory = ({ IDL }) => {
     'phone' : IDL.Text,
     'budget' : IDL.Text,
   });
-  const Time = IDL.Int;
   const Lead = IDL.Record({
     'id' : IDL.Nat,
     'formData' : LeadCaptureFormData,
@@ -97,10 +130,22 @@ export const idlFactory = ({ IDL }) => {
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'createCommercialProject' : IDL.Func([CommercialProject], [IDL.Nat], []),
+    'deleteCommercialProject' : IDL.Func([IDL.Nat], [], []),
     'deleteLead' : IDL.Func([IDL.Nat], [], []),
+    'getAllCommercialProjects' : IDL.Func(
+        [],
+        [IDL.Vec(CommercialProject)],
+        ['query'],
+      ),
     'getAllLeads' : IDL.Func([], [IDL.Vec(Lead)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getCommercialProject' : IDL.Func(
+        [IDL.Nat],
+        [IDL.Opt(CommercialProject)],
+        ['query'],
+      ),
     'getLead' : IDL.Func([IDL.Nat], [Lead], ['query']),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
@@ -110,6 +155,7 @@ export const idlFactory = ({ IDL }) => {
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'submitLead' : IDL.Func([LeadCaptureFormData], [IDL.Nat], []),
+    'updateCommercialProject' : IDL.Func([IDL.Nat, CommercialProject], [], []),
     'updateLead' : IDL.Func([IDL.Nat, LeadCaptureFormData], [], []),
   });
 };

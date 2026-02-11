@@ -10,6 +10,16 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface CommercialProject {
+  'id' : bigint,
+  'title' : string,
+  'carpetArea' : string,
+  'lastUpdated' : Time,
+  'highlights' : Array<string>,
+  'price' : string,
+  'location' : string,
+  'contactDetails' : string,
+}
 export interface Lead {
   'id' : bigint,
   'formData' : LeadCaptureFormData,
@@ -38,15 +48,23 @@ export type UserRole = { 'admin' : null } |
 export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'createCommercialProject' : ActorMethod<[CommercialProject], bigint>,
+  'deleteCommercialProject' : ActorMethod<[bigint], undefined>,
   'deleteLead' : ActorMethod<[bigint], undefined>,
+  'getAllCommercialProjects' : ActorMethod<[], Array<CommercialProject>>,
   'getAllLeads' : ActorMethod<[], Array<Lead>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getCommercialProject' : ActorMethod<[bigint], [] | [CommercialProject]>,
   'getLead' : ActorMethod<[bigint], Lead>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'submitLead' : ActorMethod<[LeadCaptureFormData], bigint>,
+  'updateCommercialProject' : ActorMethod<
+    [bigint, CommercialProject],
+    undefined
+  >,
   'updateLead' : ActorMethod<[bigint, LeadCaptureFormData], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;

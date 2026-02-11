@@ -210,7 +210,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
               {submitLead.isPending ? (
                 <>
                   <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  Submitting...
+                  {COPY.leadForm.submitting}
                 </>
               ) : (
                 COPY.leadForm.submit

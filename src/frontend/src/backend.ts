@@ -103,6 +103,16 @@ export interface LeadCaptureFormData {
     phone: string;
     budget: string;
 }
+export interface CommercialProject {
+    id: bigint;
+    title: string;
+    carpetArea: string;
+    lastUpdated: Time;
+    highlights: Array<string>;
+    price: string;
+    location: string;
+    contactDetails: string;
+}
 export interface UserProfile {
     name: string;
 }
@@ -125,18 +135,23 @@ export enum UserRole {
 export interface backendInterface {
     _initializeAccessControlWithSecret(userSecret: string): Promise<void>;
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    createCommercialProject(project: CommercialProject): Promise<bigint>;
+    deleteCommercialProject(id: bigint): Promise<void>;
     deleteLead(id: bigint): Promise<void>;
+    getAllCommercialProjects(): Promise<Array<CommercialProject>>;
     getAllLeads(): Promise<Array<Lead>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
+    getCommercialProject(id: bigint): Promise<CommercialProject | null>;
     getLead(id: bigint): Promise<Lead>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     submitLead(formData: LeadCaptureFormData): Promise<bigint>;
+    updateCommercialProject(id: bigint, updatedProject: CommercialProject): Promise<void>;
     updateLead(id: bigint, newFormData: LeadCaptureFormData): Promise<void>;
 }
-import type { Lead as _Lead, LeadCaptureFormData as _LeadCaptureFormData, PropertyType as _PropertyType, Time as _Time, UsageType as _UsageType, UserProfile as _UserProfile, UserRole as _UserRole } from "./declarations/backend.did.d.ts";
+import type { CommercialProject as _CommercialProject, Lead as _Lead, LeadCaptureFormData as _LeadCaptureFormData, PropertyType as _PropertyType, Time as _Time, UsageType as _UsageType, UserProfile as _UserProfile, UserRole as _UserRole } from "./declarations/backend.did.d.ts";
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
     async _initializeAccessControlWithSecret(arg0: string): Promise<void> {
@@ -167,6 +182,34 @@ export class Backend implements backendInterface {
             return result;
         }
     }
+    async createCommercialProject(arg0: CommercialProject): Promise<bigint> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.createCommercialProject(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.createCommercialProject(arg0);
+            return result;
+        }
+    }
+    async deleteCommercialProject(arg0: bigint): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.deleteCommercialProject(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.deleteCommercialProject(arg0);
+            return result;
+        }
+    }
     async deleteLead(arg0: bigint): Promise<void> {
         if (this.processError) {
             try {
@@ -178,6 +221,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.deleteLead(arg0);
+            return result;
+        }
+    }
+    async getAllCommercialProjects(): Promise<Array<CommercialProject>> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getAllCommercialProjects();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getAllCommercialProjects();
             return result;
         }
     }
@@ -221,6 +278,20 @@ export class Backend implements backendInterface {
         } else {
             const result = await this.actor.getCallerUserRole();
             return from_candid_UserRole_n13(this._uploadFile, this._downloadFile, result);
+        }
+    }
+    async getCommercialProject(arg0: bigint): Promise<CommercialProject | null> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.getCommercialProject(arg0);
+                return from_candid_opt_n15(this._uploadFile, this._downloadFile, result);
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.getCommercialProject(arg0);
+            return from_candid_opt_n15(this._uploadFile, this._downloadFile, result);
         }
     }
     async getLead(arg0: bigint): Promise<Lead> {
@@ -282,28 +353,42 @@ export class Backend implements backendInterface {
     async submitLead(arg0: LeadCaptureFormData): Promise<bigint> {
         if (this.processError) {
             try {
-                const result = await this.actor.submitLead(to_candid_LeadCaptureFormData_n15(this._uploadFile, this._downloadFile, arg0));
+                const result = await this.actor.submitLead(to_candid_LeadCaptureFormData_n16(this._uploadFile, this._downloadFile, arg0));
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.submitLead(to_candid_LeadCaptureFormData_n15(this._uploadFile, this._downloadFile, arg0));
+            const result = await this.actor.submitLead(to_candid_LeadCaptureFormData_n16(this._uploadFile, this._downloadFile, arg0));
+            return result;
+        }
+    }
+    async updateCommercialProject(arg0: bigint, arg1: CommercialProject): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.updateCommercialProject(arg0, arg1);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.updateCommercialProject(arg0, arg1);
             return result;
         }
     }
     async updateLead(arg0: bigint, arg1: LeadCaptureFormData): Promise<void> {
         if (this.processError) {
             try {
-                const result = await this.actor.updateLead(arg0, to_candid_LeadCaptureFormData_n15(this._uploadFile, this._downloadFile, arg1));
+                const result = await this.actor.updateLead(arg0, to_candid_LeadCaptureFormData_n16(this._uploadFile, this._downloadFile, arg1));
                 return result;
             } catch (e) {
                 this.processError(e);
                 throw new Error("unreachable");
             }
         } else {
-            const result = await this.actor.updateLead(arg0, to_candid_LeadCaptureFormData_n15(this._uploadFile, this._downloadFile, arg1));
+            const result = await this.actor.updateLead(arg0, to_candid_LeadCaptureFormData_n16(this._uploadFile, this._downloadFile, arg1));
             return result;
         }
     }
@@ -324,6 +409,9 @@ function from_candid_UserRole_n13(_uploadFile: (file: ExternalBlob) => Promise<U
     return from_candid_variant_n14(_uploadFile, _downloadFile, value);
 }
 function from_candid_opt_n12(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_UserProfile]): UserProfile | null {
+    return value.length === 0 ? null : value[0];
+}
+function from_candid_opt_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: [] | [_CommercialProject]): CommercialProject | null {
     return value.length === 0 ? null : value[0];
 }
 function from_candid_record_n5(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
@@ -397,19 +485,19 @@ function from_candid_variant_n9(_uploadFile: (file: ExternalBlob) => Promise<Uin
 function from_candid_vec_n3(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: Array<_Lead>): Array<Lead> {
     return value.map((x)=>from_candid_Lead_n4(_uploadFile, _downloadFile, x));
 }
-function to_candid_LeadCaptureFormData_n15(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: LeadCaptureFormData): _LeadCaptureFormData {
-    return to_candid_record_n16(_uploadFile, _downloadFile, value);
+function to_candid_LeadCaptureFormData_n16(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: LeadCaptureFormData): _LeadCaptureFormData {
+    return to_candid_record_n17(_uploadFile, _downloadFile, value);
 }
-function to_candid_PropertyType_n17(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: PropertyType): _PropertyType {
-    return to_candid_variant_n18(_uploadFile, _downloadFile, value);
+function to_candid_PropertyType_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: PropertyType): _PropertyType {
+    return to_candid_variant_n19(_uploadFile, _downloadFile, value);
 }
-function to_candid_UsageType_n19(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UsageType): _UsageType {
-    return to_candid_variant_n20(_uploadFile, _downloadFile, value);
+function to_candid_UsageType_n20(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UsageType): _UsageType {
+    return to_candid_variant_n21(_uploadFile, _downloadFile, value);
 }
 function to_candid_UserRole_n1(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UserRole): _UserRole {
     return to_candid_variant_n2(_uploadFile, _downloadFile, value);
 }
-function to_candid_record_n16(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
+function to_candid_record_n17(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: {
     propertyType: PropertyType;
     name: string;
     usageType: UsageType;
@@ -423,14 +511,14 @@ function to_candid_record_n16(_uploadFile: (file: ExternalBlob) => Promise<Uint8
     budget: string;
 } {
     return {
-        propertyType: to_candid_PropertyType_n17(_uploadFile, _downloadFile, value.propertyType),
+        propertyType: to_candid_PropertyType_n18(_uploadFile, _downloadFile, value.propertyType),
         name: value.name,
-        usageType: to_candid_UsageType_n19(_uploadFile, _downloadFile, value.usageType),
+        usageType: to_candid_UsageType_n20(_uploadFile, _downloadFile, value.usageType),
         phone: value.phone,
         budget: value.budget
     };
 }
-function to_candid_variant_n18(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: PropertyType): {
+function to_candid_variant_n19(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: PropertyType): {
     commercial: null;
 } | {
     house: null;
@@ -468,7 +556,7 @@ function to_candid_variant_n2(_uploadFile: (file: ExternalBlob) => Promise<Uint8
         guest: null
     } : value;
 }
-function to_candid_variant_n20(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UsageType): {
+function to_candid_variant_n21(_uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, value: UsageType): {
     investment: null;
 } | {
     selfUse: null;

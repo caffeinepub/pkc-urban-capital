@@ -1,13 +1,20 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "Build a premium dark-themed, mobile-responsive commercial real estate lead-generation website for PKC Urban Capital (Pune, India) with gold accents and investor-focused messaging, including property listings with filters, ROI calculator, testimonials, lead form, and WhatsApp CTAs. Updated brand palette: primary background #0B1C2D, gold accent #C6A75E, heading text #F5F5F5, sub text #B8C0CC.",
+  "projectStateVersion": 13,
+  "summary": "Build a clean, premium, corporate, mobile-responsive lead-generation website for PKC Urban Capital (Pune, India) using Navy (#0B1C2D) + Gold (#C6A75E) with simple, honest investor messaging (no exaggerated claims), positioned as “Authorized Channel Partner – Commercial Real Estate”, including property listings with filters, ROI calculator, lead form, and Call/WhatsApp CTAs (WhatsApp/Call: +91 9657092665) and contact email pkcurbancapital@gmail.com.",
   "architectural_notes": [
     "Mobile-responsive layout optimized for lead generation and conversions (clear CTAs, WhatsApp contact points).",
     "Featured properties should support client-side filtering by location, budget, and property type.",
-    "Use updated brand palette across the site: Primary Background #0B1C2D, Gold Accent #C6A75E, Heading Text #F5F5F5, Sub Text #B8C0CC."
+    "Use updated brand palette across the site: Primary Background #0B1C2D, Gold Accent #C6A75E, Heading Text #F5F5F5, Sub Text #B8C0CC.",
+    "Site-wide copy should be simple, honest, and avoid exaggerated/unsupported claims; position PKC Urban Capital as “Authorized Channel Partner – Commercial Real Estate”.",
+    "All Call/WhatsApp CTAs and displayed contact details must use +91 9657092665 (replace +91 9658092665 wherever present).",
+    "Replace/remove any default Hinjewadi demo listing and allow custom commercial project listing entries with editable fields: Location, Carpet Area, Price, Highlights, and a configurable Contact Button; keep styling consistent with the Navy (#0B1C2D) + Gold (#C6A75E) premium theme.",
+    "Add and display contact email pkcurbancapital@gmail.com in appropriate contact areas (header/footer/contact section and/or forms)."
   ],
-  "known_issues": [],
+  "known_issues": [
+    "Incorrect contact number used in CTAs/content (+91 9658092665); must be updated to +91 9657092665 site-wide.",
+    "Adding/displaying email may be blocked by current platform/account limitation (email features disabled unless upgraded)."
+  ],
   "isFixRequest": false,
   "existing_features": [
     {
@@ -121,6 +128,94 @@
         "REQ-15"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-site-wide-copy-to-use-the-positioning-authorized-channel-partner-commercial-real-estate-and-remove-exaggerated-overpromising-language-so-the-tone-is-clean-premium-corporate-and-honest-across-all-sections",
+      "title": "Update site-wide copy to use the positioning “Authorized Channel Partner – Commercial Real Estate” and remove exaggerated/overpromising language so the tone is clean, premium, corporate, and honest across all sections.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-testimonials-section-from-the-website-experience-so-no-fake-or-sample-testimonials-are-shown-anywhere-on-the-site",
+      "title": "Remove the Testimonials section from the website experience so no fake or sample testimonials are shown anywhere on the site.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-configure-all-whatsapp-ctas-to-use-the-phone-number-91-9658092665-including-the-floating-whatsapp-button-and-property-card-whatsapp-actions",
+      "title": "Configure all WhatsApp CTAs to use the phone number +91 9658092665, including the floating WhatsApp button and property-card WhatsApp actions.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-prominent-click-to-call-cta-using-91-9658092665-and-ensure-contact-details-shown-in-the-header-footer-match-this-number-keep-the-design-mobile-optimized",
+      "title": "Add a prominent click-to-call CTA using +91 9658092665 and ensure contact details shown in the header/footer match this number; keep the design mobile-optimized.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-centralized-contact-configuration-so-the-site-wide-phone-whatsapp-number-is-91-9657092665-and-whatsapp-format-919657092665-and-ensure-all-call-whatsapp-ctas-and-displayed-contact-details-use-this-updated-number",
+      "title": "Update the centralized contact configuration so the site-wide phone/WhatsApp number is +91 9657092665 (and WhatsApp format 919657092665), and ensure all Call/WhatsApp CTAs and displayed contact details use this updated number.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-default-hinjewadi-demo-project-s-from-the-website-s-featured-listings-so-no-prefilled-hinjewadi-demo-property-project-is-shown-by-default",
+      "title": "Remove the default Hinjewadi demo project(s) from the website’s featured listings so no prefilled “Hinjewadi demo” property/project is shown by default.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-featured-listings-ui-to-render-commercial-projects-from-the-backend-instead-of-the-current-hardcoded-demo-property-list-and-display-the-required-fields-on-each-card-location-carpet-area-price-highlights-and-a-contact-button",
+      "title": "Update the Featured listings UI to render commercial projects from the backend (instead of the current hardcoded demo property list) and display the required fields on each card: Location, Carpet Area, Price, Highlights, and a Contact Button.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-an-admin-only-ui-to-manage-add-edit-delete-commercial-project-listings-with-editable-fields-location-carpet-area-price-highlights-and-contact-button-only-show-this-ui-when-the-signed-in-identity-is-authorized-as-admin",
+      "title": "Provide an admin-only UI to manage (add/edit/delete) commercial project listings with editable fields: Location, Carpet Area, Price, Highlights, and Contact Button; only show this UI when the signed-in identity is authorized as admin.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-the-featured-listings-layout-premium-and-consistent-with-the-existing-navy-gold-theme-including-the-new-highlights-and-contact-button-elements",
+      "title": "Keep the featured listings layout premium and consistent with the existing Navy & Gold theme, including the new Highlights and Contact Button elements.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-whatsapp-link-generation-so-the-default-whatsapp-cta-uses-a-clean-minimal-url-no-prefilled-message-query-string-while-still-supporting-an-optional-prefilled-message-when-explicitly-requested",
+      "title": "Update the WhatsApp link generation so the default WhatsApp CTA uses a clean, minimal URL (no prefilled message query string), while still supporting an optional prefilled message when explicitly requested.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-whatsapp-cta-entry-points-including-the-floating-whatsapp-button-and-any-card-level-whatsapp-actions-that-use-the-default-message-to-use-the-new-clean-default-whatsapp-link-behavior",
+      "title": "Update all WhatsApp CTA entry points (including the floating WhatsApp button and any card-level WhatsApp actions that use the default message) to use the new clean default WhatsApp link behavior.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -161,12 +256,6 @@
       "status": "pending"
     },
     {
-      "id": "AR-7",
-      "summary": "Add Testimonials section",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
       "id": "AR-8",
       "summary": "Add Lead Capture Form with fields: name, phone, budget, property type, and investment vs self use",
       "reqIds": [],
@@ -185,6 +274,38 @@
         "REQ-10"
       ],
       "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update brand positioning and site-wide copy to use “Authorized Channel Partner – Commercial Real Estate” and keep messaging simple, honest, and free of exaggerated claims",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add a prominent Call button and configure WhatsApp CTAs to use +91 9658092665 across the site (mobile-optimized click-to-call and WhatsApp deep link)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Remove default Hinjewadi demo project and support custom commercial project listings with editable fields (Location, Carpet Area, Price, Highlights, Contact Button) while keeping premium Navy & Gold layout",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Add backend support for storing and serving custom commercial project listings with editable fields: Location, Carpet Area, Price, Highlights, and Contact Button; support admin-only create/update/delete and public read/list endpoints.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Add contact email pkcurbancapital@gmail.com to the website (e.g., header/footer/contact section and/or forms as appropriate)",
+      "reqIds": [],
+      "status": "blocked"
     }
   ],
   "gameProjectType": "none",

@@ -5,22 +5,22 @@ const highlights = [
   {
     icon: Building2,
     title: 'Builder-Direct Inventory',
-    description: 'Exclusive access to pre-launch and under-construction commercial properties with best pricing'
+    description: 'Access to pre-launch and under-construction commercial properties with competitive pricing'
   },
   {
     icon: Handshake,
-    title: 'Strong Negotiation Support',
-    description: 'Expert negotiators securing the most favorable terms and pricing for your investment'
+    title: 'Negotiation Support',
+    description: 'Professional negotiation assistance to help secure favorable terms for your investment'
   },
   {
     icon: TrendingUp,
     title: 'ROI-Focused Consulting',
-    description: 'Data-driven investment strategies focused on maximizing rental yields and capital appreciation'
+    description: 'Investment guidance focused on rental yields and capital appreciation potential'
   },
   {
     icon: FileCheck,
-    title: 'End-to-End Documentation',
-    description: 'Complete legal and documentation support ensuring smooth, hassle-free transactions'
+    title: 'Documentation Support',
+    description: 'Comprehensive legal and documentation assistance for smooth transactions'
   }
 ];
 

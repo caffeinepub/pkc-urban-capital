@@ -21,6 +21,16 @@ export interface LeadCaptureFormData {
     phone: string;
     budget: string;
 }
+export interface CommercialProject {
+    id: bigint;
+    title: string;
+    carpetArea: string;
+    lastUpdated: Time;
+    highlights: Array<string>;
+    price: string;
+    location: string;
+    contactDetails: string;
+}
 export interface UserProfile {
     name: string;
 }
@@ -42,14 +52,19 @@ export enum UserRole {
 }
 export interface backendInterface {
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    createCommercialProject(project: CommercialProject): Promise<bigint>;
+    deleteCommercialProject(id: bigint): Promise<void>;
     deleteLead(id: bigint): Promise<void>;
+    getAllCommercialProjects(): Promise<Array<CommercialProject>>;
     getAllLeads(): Promise<Array<Lead>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
+    getCommercialProject(id: bigint): Promise<CommercialProject | null>;
     getLead(id: bigint): Promise<Lead>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     submitLead(formData: LeadCaptureFormData): Promise<bigint>;
+    updateCommercialProject(id: bigint, updatedProject: CommercialProject): Promise<void>;
     updateLead(id: bigint, newFormData: LeadCaptureFormData): Promise<void>;
 }
