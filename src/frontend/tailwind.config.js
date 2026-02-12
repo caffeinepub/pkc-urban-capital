@@ -82,7 +82,7 @@ export default {
             },
             fontFamily: {
                 sans: ['Inter', 'system-ui', 'sans-serif'],
-                heading: ['Montserrat', 'Inter', 'sans-serif']
+                heading: ['Playfair Display', 'Inter', 'serif']
             }
         }
     },

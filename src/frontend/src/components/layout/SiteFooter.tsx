@@ -1,11 +1,12 @@
 import { Building2, MapPin, Phone, Mail } from 'lucide-react';
 import { CONTACT_CONFIG } from '../../config/contact';
+import { COPY } from '../../content/copy';
 
 export default function SiteFooter() {
   const currentYear = new Date().getFullYear();
   const appIdentifier = typeof window !== 'undefined' 
-    ? encodeURIComponent(window.location.hostname) 
-    : 'pkc-urban-capital';
+    ? encodeURIComponent(window.location.hostname || 'pkcurbancapital') 
+    : 'pkcurbancapital';
 
   return (
     <footer className="border-t border-border/40 bg-secondary text-foreground">
@@ -18,11 +19,11 @@ export default function SiteFooter() {
                 <Building2 className="h-6 w-6 text-primary" />
               </div>
               <div>
-                <h3 className="text-lg font-heading font-bold text-primary">PKC Urban Capital</h3>
+                <h3 className="text-lg font-heading font-bold text-primary">{COPY.hero.brandLine}</h3>
               </div>
             </div>
             <p className="text-sm text-muted-foreground">
-              Authorized Channel Partner – Commercial Real Estate
+              {COPY.footer.tagline}
             </p>
           </div>
 
@@ -87,9 +88,9 @@ export default function SiteFooter() {
         </div>
 
         <div className="mt-12 border-t border-border/40 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-          <p>© {currentYear} PKC Urban Capital. All rights reserved.</p>
+          <p>{COPY.footer.copyright.replace('{year}', currentYear.toString())}</p>
           <p>
-            Built with ❤️ using{' '}
+            {COPY.footer.builtWith} {COPY.footer.builtWithLove} {COPY.footer.builtWithUsing}{' '}
             <a
               href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appIdentifier}`}
               target="_blank"

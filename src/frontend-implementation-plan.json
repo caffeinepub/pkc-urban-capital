@@ -1,42 +1,66 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Clean default WhatsApp links with optional prefilled messages",
+  "title": "Replace live deployment with current build and remove production publish blockers",
   "requirements": [
     {
-      "id": "REQ-26",
-      "summary": "Make default WhatsApp CTA generate a clean wa.me link while preserving optional message support using CONTACT_CONFIG.whatsappPhone.",
+      "id": "REQ-2",
+      "summary": "Fix and complete DEPLOYMENT.md with valid Markdown and an end-to-end publish checklist that preserves the exact production slug `pkcurbancapital`.",
       "acceptanceCriteria": [
-        "When no message is provided, WhatsApp links resolve to the clean format `https://wa.me/<number>` with no `?text=` query string.",
-        "When a message is explicitly provided (e.g., property-specific inquiry), the link includes a `?text=` query string with proper URL encoding.",
-        "All WhatsApp links continue to use the centralized `CONTACT_CONFIG.whatsappPhone` number."
+        "`frontend/DEPLOYMENT.md` renders correctly as Markdown (no broken/unterminated fenced blocks).",
+        "The document includes a clear, sequential checklist for publishing the frontend + backend (as applicable) in this project.",
+        "The document explicitly instructs to set the publish slug/subdomain to exactly `pkcurbancapital` and warns against draft/random suffixes."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/config/whatsapp.ts",
+          "path": "frontend/DEPLOYMENT.md",
           "operation": "modify",
-          "description": "Update generateWhatsAppLink(message?) to return `https://wa.me/<CONTACT_CONFIG.whatsappPhone>` when message is undefined/empty, and only append a URL-encoded `?text=` query when a non-empty message is explicitly provided. Keep phone number sourcing centralized via CONTACT_CONFIG.whatsappPhone."
+          "description": "Rewrite the deployment guide to be complete, valid Markdown (fix the unterminated fenced block) and provide a sequential, end-to-end publish checklist. Include an explicit, prominent instruction that the production publish slug/subdomain must be exactly `pkcurbancapital` (no draft/random suffixes), and add a short verification section for confirming the live site serves the latest build."
         }
       ]
     },
     {
-      "id": "REQ-27",
-      "summary": "Update all WhatsApp CTA entry points that relied on the previous default-message behavior to use the new clean default link behavior.",
+      "id": "REQ-3",
+      "summary": "Resolve TypeScript/production build compilation errors without touching immutable frontend paths.",
       "acceptanceCriteria": [
-        "Clicking the floating WhatsApp button opens WhatsApp using the clean `wa.me/<number>` link (no prefilled message).",
-        "Any CTA that previously called `generateWhatsAppLink()` with no arguments now opens WhatsApp using the clean link.",
-        "Property/project-specific CTAs that intentionally include context may still open with a prefilled message (short and readable), using the message-enabled link generation path."
+        "`npm run build` (or the platform’s production build step) completes successfully with no TypeScript errors.",
+        "No changes are made to immutable paths (e.g., `frontend/src/main.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/components/ui/*`)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/FloatingWhatsAppButton.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Ensure the floating WhatsApp button continues calling generateWhatsAppLink() with no arguments so it opens the new clean wa.me link (no prefilled message)."
+          "description": "Fix likely production TypeScript build errors by correcting the refs typing (e.g., ensure `useRef` allows null and aligns with `ref` expectations) and by keeping all changes confined to this file (do not touch immutable paths)."
         },
         {
-          "path": "frontend/src/components/commercial/CommercialProjectCard.tsx",
+          "path": "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
           "operation": "modify",
-          "description": "Verify the project-specific WhatsApp CTA continues to pass an explicit, short, readable context message into generateWhatsAppLink(message) so it uses the message-enabled link path (and remains properly URL-encoded)."
+          "description": "Fix TypeScript build issues around `forwardRef` typing by explicitly typing the props parameter (even if empty) and ensuring the forwarded ref type matches the `<section>` element usage; keep behavior unchanged."
+        },
+        {
+          "path": "frontend/src/components/sections/LeadCaptureFormSection.tsx",
+          "operation": "modify",
+          "description": "Fix TypeScript build issues around `forwardRef` typing by explicitly typing the props parameter (even if empty) and ensuring the forwarded ref type matches the `<section>` element usage; keep behavior unchanged."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Ensure publish configuration and docs publish the current build to the same production slug `pkcurbancapital` to replace the previously live version.",
+      "acceptanceCriteria": [
+        "Publishing the current build to slug/subdomain `pkcurbancapital` results in the live URL serving the current build (replacing the previous live version).",
+        "No separate/draft slug is used for the final live publish."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/deploy.config.json",
+          "operation": "create",
+          "description": "Create a small, repo-local publish configuration file that pins the required production slug/subdomain to exactly `pkcurbancapital` and documents that this value must be used for the final live publish (not a draft/random suffix)."
+        },
+        {
+          "path": "frontend/DEPLOYMENT.md",
+          "operation": "modify",
+          "description": "Update the documented publish steps to reference the pinned production slug/subdomain `pkcurbancapital` (and the new `frontend/deploy.config.json`), and to clearly instruct that the final publish must target the same production slug to replace the previously live version."
         }
       ]
     }

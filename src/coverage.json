@@ -1,37 +1,52 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-11T20:10:11.935Z",
+  "generatedAt": "2026-02-12T20:33:02.175Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-26",
-        "summary": "Update the WhatsApp link generation so the default WhatsApp CTA uses a clean, minimal URL (no prefilled message query string), while still supporting an optional prefilled message when explicitly requested.",
+        "id": "REQ-2",
+        "summary": "Update `frontend/DEPLOYMENT.md` to be complete, valid Markdown (no unterminated code fences) and include the full end-to-end steps for a successful publish/deployment, explicitly preserving the required production slug/subdomain exactly as `pkcurbancapital` (with no draft/random suffixes).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/config/whatsapp.ts"
+          "frontend/DEPLOYMENT.md"
         ],
         "matchedFiles": [
-          "frontend/src/config/whatsapp.ts"
+          "frontend/DEPLOYMENT.md"
         ]
       },
       {
-        "id": "REQ-27",
-        "summary": "Update all WhatsApp CTA entry points (including the floating WhatsApp button and any card-level WhatsApp actions that use the default message) to use the new clean default WhatsApp link behavior.",
+        "id": "REQ-3",
+        "summary": "Resolve any remaining production build errors that block publishing, without modifying any immutable frontend paths, and ensure the app compiles cleanly for production.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/FloatingWhatsAppButton.tsx",
-          "frontend/src/components/commercial/CommercialProjectCard.tsx"
+          "frontend/src/App.tsx",
+          "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
+          "frontend/src/components/sections/LeadCaptureFormSection.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/FloatingWhatsAppButton.tsx",
-          "frontend/src/components/commercial/CommercialProjectCard.tsx"
+          "frontend/src/App.tsx",
+          "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
+          "frontend/src/components/sections/LeadCaptureFormSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Adjust the publish/deployment configuration and documented publish steps so the current build becomes the live site and the previously-live (yesterday’s) version is no longer the active live deployment, by publishing to the same production slug/subdomain `pkcurbancapital`.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/deploy.config.json",
+          "frontend/DEPLOYMENT.md"
+        ],
+        "matchedFiles": [
+          "frontend/deploy.config.json",
+          "frontend/DEPLOYMENT.md"
         ]
       }
     ]
@@ -41,9 +56,11 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/FloatingWhatsAppButton.tsx",
-    "frontend/src/components/commercial/CommercialProjectCard.tsx",
-    "frontend/src/config/whatsapp.ts",
+    "frontend/DEPLOYMENT.md",
+    "frontend/deploy.config.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
+    "frontend/src/components/sections/LeadCaptureFormSection.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

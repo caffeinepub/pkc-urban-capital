@@ -9,7 +9,8 @@ import ProfileSetupModal from '../auth/ProfileSetupModal';
 import { COPY } from '../../content/copy';
 import { Skeleton } from '../ui/skeleton';
 
-const FeaturedPropertiesSection = forwardRef<HTMLElement>((_, ref) => {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+const FeaturedPropertiesSection = forwardRef<HTMLElement, {}>((props, ref) => {
   const { data: projects = [], isLoading: projectsLoading } = useGetAllCommercialProjects();
   const { identity } = useInternetIdentity();
   const { isAdmin, isLoading: adminLoading } = useAdminStatus();
@@ -26,7 +27,7 @@ const FeaturedPropertiesSection = forwardRef<HTMLElement>((_, ref) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight text-foreground">
             {COPY.properties.title}
           </h2>
-          <p className="text-lg md:text-xl text-primary font-medium">
+          <p className="text-lg md:text-xl text-muted-foreground">
             {COPY.properties.subtitle}
           </p>
         </div>

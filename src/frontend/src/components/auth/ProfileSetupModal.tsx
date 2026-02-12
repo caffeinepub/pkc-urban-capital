@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Button } from '../ui/button';
+import { COPY } from '../../content/copy';
 
 interface ProfileSetupModalProps {
   open: boolean;
@@ -28,19 +29,19 @@ export default function ProfileSetupModal({ open }: ProfileSetupModalProps) {
     <Dialog open={open}>
       <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle>Welcome!</DialogTitle>
+          <DialogTitle>{COPY.auth.profileSetupTitle}</DialogTitle>
           <DialogDescription>
-            Please enter your name to complete your profile setup.
+            {COPY.auth.profileSetupDescription}
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Your Name</Label>
+            <Label htmlFor="name">{COPY.auth.profileSetupNameLabel}</Label>
             <Input
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your name"
+              placeholder={COPY.auth.profileSetupNamePlaceholder}
               required
               autoFocus
             />
@@ -50,7 +51,7 @@ export default function ProfileSetupModal({ open }: ProfileSetupModalProps) {
             className="w-full"
             disabled={!name.trim() || saveProfile.isPending}
           >
-            {saveProfile.isPending ? 'Saving...' : 'Continue'}
+            {saveProfile.isPending ? COPY.auth.profileSetupSaving : COPY.auth.profileSetupContinue}
           </Button>
         </form>
       </DialogContent>

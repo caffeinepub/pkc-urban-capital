@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-whatsapp-link-generation-so-the-default-whatsapp-cta-uses-a-clean-minimal-url-no-prefilled-message-query-string-while-still-supporting-an-optional-prefilled-message-when-explicitly-requested",
-      "featureTitle": "Update the WhatsApp link generation so the default WhatsApp CTA uses a clean, minimal URL (no prefilled message query string), while still supporting an optional prefilled message when explicitly requested.",
+      "featureId": "feature-update-frontend-deployment-md-to-be-complete-valid-markdown-no-unterminated-code-fences-and-include-the-full-end-to-end-steps-for-a-successful-publish-deployment-explicitly-preserving-the-required-production-slug-subdomain-exactly-as-pkcurbancapital-with-no-draft-random-suffixes",
+      "featureTitle": "Update `frontend/DEPLOYMENT.md` to be complete, valid Markdown (no unterminated code fences) and include the full end-to-end steps for a successful publish/deployment, explicitly preserving the required production slug/subdomain exactly as `pkcurbancapital` (with no draft/random suffixes).",
       "files": [
-        "frontend/src/config/whatsapp.ts"
+        "frontend/DEPLOYMENT.md"
       ],
       "components": [
         "authorization@4.0.0",
@@ -16,16 +16,17 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-26"
+        "REQ-2"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-all-whatsapp-cta-entry-points-including-the-floating-whatsapp-button-and-any-card-level-whatsapp-actions-that-use-the-default-message-to-use-the-new-clean-default-whatsapp-link-behavior",
-      "featureTitle": "Update all WhatsApp CTA entry points (including the floating WhatsApp button and any card-level WhatsApp actions that use the default message) to use the new clean default WhatsApp link behavior.",
+      "featureId": "feature-resolve-any-remaining-production-build-errors-that-block-publishing-without-modifying-any-immutable-frontend-paths-and-ensure-the-app-compiles-cleanly-for-production",
+      "featureTitle": "Resolve any remaining production build errors that block publishing, without modifying any immutable frontend paths, and ensure the app compiles cleanly for production.",
       "files": [
-        "frontend/src/components/FloatingWhatsAppButton.tsx",
-        "frontend/src/components/commercial/CommercialProjectCard.tsx"
+        "frontend/src/App.tsx",
+        "frontend/src/components/sections/FeaturedPropertiesSection.tsx",
+        "frontend/src/components/sections/LeadCaptureFormSection.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -36,7 +37,27 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-27"
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-adjust-the-publish-deployment-configuration-and-documented-publish-steps-so-the-current-build-becomes-the-live-site-and-the-previously-live-yesterday-s-version-is-no-longer-the-active-live-deployment-by-publishing-to-the-same-production-slug-subdomain-pkcurbancapital",
+      "featureTitle": "Adjust the publish/deployment configuration and documented publish steps so the current build becomes the live site and the previously-live (yesterday’s) version is no longer the active live deployment, by publishing to the same production slug/subdomain `pkcurbancapital`.",
+      "files": [
+        "frontend/DEPLOYMENT.md",
+        "frontend/deploy.config.json"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
       ],
       "confidence": "high"
     }

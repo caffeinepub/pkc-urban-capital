@@ -1,52 +1,70 @@
 {
   "kind": "build_request",
-  "title": "Make WhatsApp contact links cleaner and simpler",
+  "title": "Replace previous live deployment with current build and fix deployment blockers",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-26",
-      "text": "Update the WhatsApp link generation so the default WhatsApp CTA uses a clean, minimal URL (no prefilled message query string), while still supporting an optional prefilled message when explicitly requested.",
+      "id": "REQ-2",
+      "text": "Update `frontend/DEPLOYMENT.md` to be complete, valid Markdown (no unterminated code fences) and include the full end-to-end steps for a successful publish/deployment, explicitly preserving the required production slug/subdomain exactly as `pkcurbancapital` (with no draft/random suffixes).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-11"
         ],
         "quotes": [
-          "Bhai link clean bnao na easy wala"
+          "Usko hta k isko live karo"
         ]
       },
       "acceptanceCriteria": [
-        "When no message is provided, WhatsApp links resolve to the clean format `https://wa.me/<number>` with no `?text=` query string.",
-        "When a message is explicitly provided (e.g., property-specific inquiry), the link includes a `?text=` query string with proper URL encoding.",
-        "All WhatsApp links continue to use the centralized `CONTACT_CONFIG.whatsappPhone` number."
+        "`frontend/DEPLOYMENT.md` renders correctly as Markdown (no broken/unterminated fenced blocks).",
+        "The document includes a clear, sequential checklist for publishing the frontend + backend (as applicable) in this project.",
+        "The document explicitly instructs to set the publish slug/subdomain to exactly `pkcurbancapital` and warns against draft/random suffixes."
       ]
     },
     {
-      "id": "REQ-27",
-      "text": "Update all WhatsApp CTA entry points (including the floating WhatsApp button and any card-level WhatsApp actions that use the default message) to use the new clean default WhatsApp link behavior.",
+      "id": "REQ-3",
+      "text": "Resolve any remaining production build errors that block publishing, without modifying any immutable frontend paths, and ensure the app compiles cleanly for production.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-11"
         ],
         "quotes": [
-          "Bhai link clean bnao na easy wala"
+          "Usko hta k isko live karo"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking the floating WhatsApp button opens WhatsApp using the clean `wa.me/<number>` link (no prefilled message).",
-        "Any CTA that previously called `generateWhatsAppLink()` with no arguments now opens WhatsApp using the clean link.",
-        "Property/project-specific CTAs that intentionally include context may still open with a prefilled message (short and readable), using the message-enabled link generation path."
+        "`npm run build` (or the platform’s production build step) completes successfully with no TypeScript errors.",
+        "No changes are made to immutable paths (e.g., `frontend/src/main.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/components/ui/*`)."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Adjust the publish/deployment configuration and documented publish steps so the current build becomes the live site and the previously-live (yesterday’s) version is no longer the active live deployment, by publishing to the same production slug/subdomain `pkcurbancapital`.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-10",
+          "msg-11"
+        ],
+        "quotes": [
+          "Arey live m kl wala web h",
+          "Usko hta k isko live karo"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Publishing the current build to slug/subdomain `pkcurbancapital` results in the live URL serving the current build (replacing the previous live version).",
+        "No separate/draft slug is used for the final live publish."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (read-only Shadcn components).",
-    "Keep changes within the existing React + TypeScript + Tailwind structure; no external link shortener services."
+    "Do not edit immutable frontend paths: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, and anything under `frontend/src/components/ui`.",
+    "Backend must remain a single Motoko actor in `backend/main.mo`; add `backend/migration.mo` only if persistent state schema changes are required."
   ],
   "nonGoals": [
-    "Adding third-party link shorteners (e.g., Bitly) or any external integrations.",
-    "Changing the site’s contact phone number configuration (only link cleanliness is in scope here)."
+    "Adding new product features unrelated to publishing/replacing the live version.",
+    "Introducing external databases, additional backend services, or third-party authentication providers beyond Internet Identity."
   ],
   "imageRequirements": {
     "required": [],

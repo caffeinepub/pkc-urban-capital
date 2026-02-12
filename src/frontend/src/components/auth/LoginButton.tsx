@@ -2,6 +2,7 @@ import { useInternetIdentity } from '../../hooks/useInternetIdentity';
 import { useQueryClient } from '@tanstack/react-query';
 import { Button } from '../ui/button';
 import { LogIn, LogOut } from 'lucide-react';
+import { COPY } from '../../content/copy';
 
 export default function LoginButton() {
   const { login, clear, loginStatus, identity } = useInternetIdentity();
@@ -36,16 +37,16 @@ export default function LoginButton() {
       className="gap-2"
     >
       {loginStatus === 'logging-in' ? (
-        'Logging in...'
+        COPY.auth.loggingIn
       ) : isAuthenticated ? (
         <>
           <LogOut className="h-4 w-4" />
-          <span className="hidden sm:inline">Logout</span>
+          <span className="hidden sm:inline">{COPY.auth.logoutButton}</span>
         </>
       ) : (
         <>
           <LogIn className="h-4 w-4" />
-          <span className="hidden sm:inline">Admin Login</span>
+          <span className="hidden sm:inline">{COPY.auth.loginButton}</span>
         </>
       )}
     </Button>

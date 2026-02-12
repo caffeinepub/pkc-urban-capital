@@ -1,5 +1,6 @@
 import { Building2, Phone } from 'lucide-react';
 import { CONTACT_CONFIG } from '../../config/contact';
+import { COPY } from '../../content/copy';
 import LoginButton from '../auth/LoginButton';
 
 interface SiteHeaderProps {
@@ -16,7 +17,7 @@ export default function SiteHeader({ onConsultationClick }: SiteHeaderProps) {
           </div>
           <div>
             <h1 className="text-xl font-heading font-bold text-primary tracking-tight">
-              PKC Urban Capital
+              {COPY.hero.brandLine}
             </h1>
             <p className="text-xs text-muted-foreground hidden sm:block">Authorized Channel Partner</p>
           </div>
@@ -37,7 +38,7 @@ export default function SiteHeader({ onConsultationClick }: SiteHeaderProps) {
             onClick={onConsultationClick}
             className="hidden md:inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring border border-primary/50 bg-transparent text-primary hover:bg-primary/10 h-10 px-6"
           >
-            Get Consultation
+            {COPY.hero.ctaSchedule}
           </button>
         </div>
       </div>

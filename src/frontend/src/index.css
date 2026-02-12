@@ -5,24 +5,26 @@
 @layer base {
     :root {
         --radius: 0.5rem;
-        --background: 0.98 0 0;
-        --foreground: 0.15 0 0;
+        /* Deep Navy #0E1A2B as primary/foreground anchor */
+        --background: 0.97 0.005 240;
+        --foreground: 0.15 0.03 240;
         --card: 1 0 0;
-        --card-foreground: 0.15 0 0;
+        --card-foreground: 0.15 0.03 240;
         --popover: 1 0 0;
-        --popover-foreground: 0.15 0 0;
+        --popover-foreground: 0.15 0.03 240;
+        /* Metallic Gold #C6A75E for accents */
         --primary: 0.72 0.08 75;
         --primary-foreground: 0.15 0.03 240;
-        --secondary: 0.95 0 0;
-        --secondary-foreground: 0.15 0 0;
-        --muted: 0.95 0 0;
-        --muted-foreground: 0.50 0 0;
+        --secondary: 0.95 0.005 240;
+        --secondary-foreground: 0.15 0.03 240;
+        --muted: 0.92 0.005 240;
+        --muted-foreground: 0.50 0.02 240;
         --accent: 0.72 0.08 75;
         --accent-foreground: 0.15 0.03 240;
         --destructive: 0.55 0.25 27;
         --destructive-foreground: 0.98 0 0;
-        --border: 0.90 0 0;
-        --input: 0.90 0 0;
+        --border: 0.88 0.01 240;
+        --input: 0.88 0.01 240;
         --ring: 0.72 0.08 75;
         --chart-1: 0.65 0.22 41;
         --chart-2: 0.60 0.12 185;
@@ -32,22 +34,24 @@
     }
 
     .dark {
+        /* Deep Navy background for dark mode */
         --background: 0.15 0.03 240;
-        --foreground: 0.97 0 0;
+        --foreground: 0.97 0.005 240;
         --card: 0.18 0.03 240;
-        --card-foreground: 0.97 0 0;
+        --card-foreground: 0.97 0.005 240;
         --popover: 0.16 0.03 240;
-        --popover-foreground: 0.97 0 0;
+        --popover-foreground: 0.97 0.005 240;
+        /* Metallic Gold remains consistent */
         --primary: 0.72 0.08 75;
         --primary-foreground: 0.15 0.03 240;
         --secondary: 0.22 0.03 240;
-        --secondary-foreground: 0.97 0 0;
+        --secondary-foreground: 0.97 0.005 240;
         --muted: 0.20 0.03 240;
         --muted-foreground: 0.78 0.02 240;
         --accent: 0.72 0.08 75;
         --accent-foreground: 0.15 0.03 240;
         --destructive: 0.60 0.25 27;
-        --destructive-foreground: 0.97 0 0;
+        --destructive-foreground: 0.97 0.005 240;
         --border: 0.28 0.03 240;
         --input: 0.25 0.03 240;
         --ring: 0.72 0.08 75;
@@ -68,7 +72,7 @@
     }
 
     h1, h2, h3, h4, h5, h6 {
-        font-family: 'Montserrat', 'Inter', sans-serif;
+        font-family: 'Playfair Display', 'Inter', serif;
         font-weight: 700;
         letter-spacing: -0.02em;
     }

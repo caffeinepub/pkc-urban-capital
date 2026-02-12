@@ -1,18 +1,28 @@
 export const COPY = {
   hero: {
-    headline: 'Commercial Real Estate Investment Opportunities in Pune',
-    subheadline: 'Offices | Showrooms | Retail Shops | Commercial Assets',
-    ctaViewInvestments: 'View Properties',
-    ctaGetConsultation: 'Get Consultation'
+    brandLine: 'PKC Urban Capital',
+    brandSubline: 'Authorized Channel Partner | Commercial Real Estate Advisory',
+    headline: 'Commercial Real Estate. Structured. Strategic. Transparent.',
+    description: 'We help investors identify and secure high-potential commercial assets in Pune through structured advisory and verified opportunities.',
+    ctaExplore: 'Explore Opportunities',
+    ctaSchedule: 'Schedule Consultation'
   },
-  about: {
-    title: 'Authorized Channel Partner – Commercial Real Estate',
-    subtitle: 'Professional Advisory for Commercial Property Investment',
-    description: 'PKC Urban Capital is an authorized channel partner specializing in commercial real estate across Pune. We connect investors with builder-direct inventory and provide comprehensive support throughout the investment process.'
+  whyChooseUs: {
+    title: 'Why Choose Us',
+    items: [
+      'Direct Developer Coordination',
+      'Verified Commercial Inventory',
+      'Transparent Deal Structure',
+      'End-to-End Assistance'
+    ]
+  },
+  ourApproach: {
+    title: 'Our Approach',
+    description: 'We focus on long-term value, risk assessment, and strategic asset selection rather than short-term sales. Our goal is to build sustainable investor relationships based on clarity and trust.'
   },
   properties: {
-    title: 'Featured Investment Properties',
-    subtitle: 'Commercial Assets Across Pune',
+    title: 'Selected Commercial Opportunities',
+    subtitle: 'Curated high-potential commercial spaces across Pune\'s prime growth corridors.',
     filterLocation: 'Location',
     filterBudget: 'Budget Range',
     filterType: 'Property Type',
@@ -40,7 +50,7 @@ export const COPY = {
     description: 'Enter your investment details to calculate potential returns'
   },
   leadForm: {
-    title: 'Start Your Investment Journey',
+    title: 'Book a Strategic Discussion',
     subtitle: 'Get Expert Consultation',
     name: 'Full Name',
     phone: 'Phone Number',
@@ -53,14 +63,31 @@ export const COPY = {
     submitting: 'Submitting...',
     successTitle: 'Thank You!',
     successMessage: 'Our investment advisor will contact you soon with property options.',
+    successCta: 'Submit Another Inquiry',
     errorTitle: 'Submission Failed',
     errorMessage: 'Please try again or contact us directly via WhatsApp.',
+    placeholders: {
+      name: 'Enter your full name',
+      phone: '10-digit mobile number',
+      budget: 'e.g., ₹50L - ₹1Cr'
+    },
     validation: {
       nameRequired: 'Name is required',
       phoneRequired: 'Phone number is required',
       phoneInvalid: 'Please enter a valid 10-digit phone number',
       budgetRequired: 'Budget is required'
     }
+  },
+  auth: {
+    loginButton: 'Admin Login',
+    logoutButton: 'Logout',
+    loggingIn: 'Logging in...',
+    profileSetupTitle: 'Welcome!',
+    profileSetupDescription: 'Please enter your name to complete your profile setup.',
+    profileSetupNameLabel: 'Your Name',
+    profileSetupNamePlaceholder: 'Enter your name',
+    profileSetupContinue: 'Continue',
+    profileSetupSaving: 'Saving...'
   },
   admin: {
     panelTitle: 'Manage Commercial Projects',
@@ -74,6 +101,7 @@ export const COPY = {
     formCarpetArea: 'Carpet Area',
     formPrice: 'Price',
     formHighlights: 'Highlights',
+    formHighlightsHelp: 'Comma-separated list',
     formContactDetails: 'Contact Button Text',
     saveButton: 'Save Project',
     cancelButton: 'Cancel',
@@ -82,12 +110,15 @@ export const COPY = {
     successUpdate: 'Project updated successfully',
     successDelete: 'Project deleted successfully',
     errorUnauthorized: 'Unauthorized: Only admins can manage projects',
-    errorGeneric: 'An error occurred. Please try again.'
+    errorDelete: 'Failed to delete project',
+    errorCreateUpdate: 'Failed to {action} project'
   },
   footer: {
     tagline: 'Authorized Channel Partner – Commercial Real Estate',
     locations: 'Serving Wakad, Baner, Balewadi, Hinjewadi & Pimple Saudagar',
     copyright: '© {year} PKC Urban Capital. All rights reserved.',
-    builtWith: 'Built with love using'
+    builtWith: 'Built with',
+    builtWithLove: '❤️',
+    builtWithUsing: 'using'
   }
 };

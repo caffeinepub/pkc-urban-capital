@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Make default WhatsApp contact links clean and minimal while still allowing optional prefilled messages when explicitly provided.
+**Goal:** Replace the previous live deployment with the current build by fixing deployment blockers and ensuring publishing targets the production slug `pkcurbancapital`.
 
 **Planned changes:**
-- Update WhatsApp link generation so calls with no message produce `https://wa.me/<number>` (no `?text=`), and calls with an explicit message add `?text=` with proper URL encoding.
-- Update all WhatsApp CTA entry points (including the floating WhatsApp button and any card-level actions using the default behavior) to use the new clean default link generation.
-- Ensure all WhatsApp links continue using the centralized `CONTACT_CONFIG.whatsappPhone` number.
+- Update `frontend/DEPLOYMENT.md` to be valid, complete Markdown and include end-to-end publish/deployment steps, explicitly requiring the slug/subdomain to be exactly `pkcurbancapital` (no draft/random suffixes).
+- Resolve remaining production build errors so the frontend compiles cleanly for production without changing any immutable frontend paths.
+- Adjust publish/deployment configuration and documented steps so publishing to `pkcurbancapital` makes the current build the live site (replacing the previously-live version).
 
-**User-visible outcome:** Clicking WhatsApp CTAs opens a clean `wa.me/<number>` link by default, while property/project-specific WhatsApp actions can still open with a prefilled, readable message when intentionally provided.
+**User-visible outcome:** The live site served at the `pkcurbancapital` production slug/subdomain shows the current build (not yesterday’s version), and the project can be published successfully using the documented steps.

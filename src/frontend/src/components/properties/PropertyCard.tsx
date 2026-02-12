@@ -46,7 +46,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
         {/* Property Details Grid */}
         <div className="grid grid-cols-2 gap-3 text-sm">
           <div className="flex items-start gap-2">
-            <Maximize2 className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+            <Maximize2 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
             <div>
               <div className="text-muted-foreground text-xs">{COPY.properties.carpetArea}</div>
               <div className="font-semibold text-foreground">{property.carpetArea} sq ft</div>
@@ -54,7 +54,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
 
           <div className="flex items-start gap-2">
-            <IndianRupee className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+            <IndianRupee className="h-4 w-4 text-primary mt-0.5 shrink-0" />
             <div>
               <div className="text-muted-foreground text-xs">{COPY.properties.price}</div>
               <div className="font-semibold text-foreground">₹{property.price}L</div>
@@ -62,7 +62,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
 
           <div className="flex items-start gap-2">
-            <TrendingUp className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+            <TrendingUp className="h-4 w-4 text-primary mt-0.5 shrink-0" />
             <div>
               <div className="text-muted-foreground text-xs">{COPY.properties.expectedRent}</div>
               <div className="font-semibold text-foreground">₹{property.expectedRent}K/mo</div>
@@ -70,7 +70,7 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
 
           <div className="flex items-start gap-2">
-            <Calendar className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
+            <Calendar className="h-4 w-4 text-primary mt-0.5 shrink-0" />
             <div>
               <div className="text-muted-foreground text-xs">{COPY.properties.possession}</div>
               <div className="font-semibold text-foreground text-xs">{property.possessionStatus}</div>

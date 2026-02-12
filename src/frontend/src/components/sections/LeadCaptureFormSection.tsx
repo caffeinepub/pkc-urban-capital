@@ -1,10 +1,11 @@
 import { forwardRef, useState } from 'react';
-import { CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, AlertCircle } from 'lucide-react';
 import { useSubmitLead } from '../../hooks/useQueries';
 import { PropertyType, UsageType } from '../../backend';
 import { COPY } from '../../content/copy';
 
-const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+const LeadCaptureFormSection = forwardRef<HTMLElement, {}>((props, ref) => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -90,7 +91,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
                 onClick={() => setShowSuccess(false)}
                 className="inline-flex items-center justify-center rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6"
               >
-                Submit Another Inquiry
+                {COPY.leadForm.successCta}
               </button>
             </div>
           </div>
@@ -106,7 +107,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight text-foreground">
             {COPY.leadForm.title}
           </h2>
-          <p className="text-lg md:text-xl text-primary font-medium">
+          <p className="text-lg md:text-xl text-muted-foreground">
             {COPY.leadForm.subtitle}
           </p>
         </div>
@@ -115,7 +116,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
           <form onSubmit={handleSubmit} className="rounded-lg border border-border/40 bg-card p-6 md:p-8 space-y-6">
             {submitLead.isError && (
               <div className="flex items-start gap-3 rounded-md border border-destructive/50 bg-destructive/10 p-4">
-                <AlertCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
+                <AlertCircle className="h-5 w-5 text-destructive shrink-0 mt-0.5" />
                 <div className="space-y-1">
                   <div className="font-semibold text-destructive">{COPY.leadForm.errorTitle}</div>
                   <div className="text-sm text-destructive/90">{COPY.leadForm.errorMessage}</div>
@@ -133,7 +134,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 className={`w-full rounded-md border ${errors.name ? 'border-destructive' : 'border-input'} bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-                placeholder="Enter your full name"
+                placeholder={COPY.leadForm.placeholders.name}
               />
               {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
             </div>
@@ -148,7 +149,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 className={`w-full rounded-md border ${errors.phone ? 'border-destructive' : 'border-input'} bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-                placeholder="10-digit mobile number"
+                placeholder={COPY.leadForm.placeholders.phone}
               />
               {errors.phone && <p className="text-sm text-destructive">{errors.phone}</p>}
             </div>
@@ -163,7 +164,7 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
                 value={formData.budget}
                 onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
                 className={`w-full rounded-md border ${errors.budget ? 'border-destructive' : 'border-input'} bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary`}
-                placeholder="e.g., ₹50L - ₹1Cr"
+                placeholder={COPY.leadForm.placeholders.budget}
               />
               {errors.budget && <p className="text-sm text-destructive">{errors.budget}</p>}
             </div>
@@ -196,25 +197,17 @@ const LeadCaptureFormSection = forwardRef<HTMLElement>((_, ref) => {
                 onChange={(e) => setFormData({ ...formData, usageType: e.target.value as keyof typeof UsageType })}
                 className="w-full rounded-md border border-input bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               >
-                <option value="investment">Investment</option>
-                <option value="selfUse">Self Use</option>
+                <option value="investment">{COPY.leadForm.investment}</option>
+                <option value="selfUse">{COPY.leadForm.selfUse}</option>
               </select>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               disabled={submitLead.isPending}
-              className="w-full inline-flex items-center justify-center rounded-md text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-8 shadow-gold-glow"
+              className="w-full inline-flex items-center justify-center rounded-md text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 disabled:opacity-50 disabled:pointer-events-none"
             >
-              {submitLead.isPending ? (
-                <>
-                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                  {COPY.leadForm.submitting}
-                </>
-              ) : (
-                COPY.leadForm.submit
-              )}
+              {submitLead.isPending ? COPY.leadForm.submitting : COPY.leadForm.submit}
             </button>
           </form>
         </div>

@@ -1,0 +1,9 @@
+{
+  "productionSlug": "pkcurbancapital",
+  "description": "Production deployment configuration for PKC Urban Capital",
+  "notes": [
+    "This slug must be used for all production deployments",
+    "Do not use draft or random suffixes for the final live publish",
+    "The live URL will be: https://pkcurbancapital.caffeine.ai"
+  ]
+}

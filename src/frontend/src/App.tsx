@@ -1,63 +1,61 @@
 import { useRef } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from './components/ui/sonner';
 import SiteHeader from './components/layout/SiteHeader';
+import SiteFooter from './components/layout/SiteFooter';
 import HeroSection from './components/sections/HeroSection';
 import AboutSection from './components/sections/AboutSection';
+import OurApproachSection from './components/sections/OurApproachSection';
 import FeaturedPropertiesSection from './components/sections/FeaturedPropertiesSection';
 import WhyInvestPuneSection from './components/sections/WhyInvestPuneSection';
+import PuneWestGrowthOutlookSection from './components/sections/PuneWestGrowthOutlookSection';
 import InvestorCalculatorSection from './components/sections/InvestorCalculatorSection';
+import TestimonialsSection from './components/sections/TestimonialsSection';
 import LeadCaptureFormSection from './components/sections/LeadCaptureFormSection';
-import SiteFooter from './components/layout/SiteFooter';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
 import FloatingCallButton from './components/FloatingCallButton';
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5,
-      refetchOnWindowFocus: false,
-    },
-  },
-});
-
-export default function App() {
-  const propertiesRef = useRef<HTMLElement>(null);
-  const leadFormRef = useRef<HTMLElement>(null);
+function App() {
+  const propertiesRef = useRef<HTMLElement | null>(null);
+  const consultationRef = useRef<HTMLElement | null>(null);
 
   const scrollToProperties = () => {
-    propertiesRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    propertiesRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const scrollToLeadForm = () => {
-    leadFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollToConsultation = () => {
+    consultationRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-        <div className="min-h-screen bg-background text-foreground pb-24">
-          <SiteHeader onConsultationClick={scrollToLeadForm} />
-          
-          <main>
-            <HeroSection 
-              onViewInvestments={scrollToProperties}
-              onGetConsultation={scrollToLeadForm}
-            />
-            <AboutSection />
-            <FeaturedPropertiesSection ref={propertiesRef} />
-            <WhyInvestPuneSection />
-            <InvestorCalculatorSection />
-            <LeadCaptureFormSection ref={leadFormRef} />
-          </main>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+      <div className="min-h-screen flex flex-col">
+        <SiteHeader onConsultationClick={scrollToConsultation} />
+        
+        <main className="flex-1">
+          <HeroSection 
+            onViewInvestments={scrollToProperties}
+            onGetConsultation={scrollToConsultation}
+          />
+          <AboutSection />
+          <OurApproachSection />
+          <FeaturedPropertiesSection ref={propertiesRef} />
+          <WhyInvestPuneSection />
+          <PuneWestGrowthOutlookSection />
+          <InvestorCalculatorSection />
+          <TestimonialsSection />
+          <LeadCaptureFormSection ref={consultationRef} />
+        </main>
 
-          <SiteFooter />
-          <FloatingWhatsAppButton />
-          <FloatingCallButton />
-        </div>
-        <Toaster />
-      </ThemeProvider>
-    </QueryClientProvider>
+        <SiteFooter />
+        
+        <FloatingWhatsAppButton />
+        <FloatingCallButton />
+      </div>
+      
+      <Toaster />
+    </ThemeProvider>
   );
 }
+
+export default App;

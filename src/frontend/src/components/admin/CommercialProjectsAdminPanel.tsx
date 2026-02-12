@@ -7,8 +7,9 @@ import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/card';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../ui/dialog';
-import { Plus, Edit, Trash2, X } from 'lucide-react';
+import { Plus, Edit, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { COPY } from '../../content/copy';
 
 interface CommercialProjectsAdminPanelProps {
   projects: CommercialProject[];
@@ -88,34 +89,35 @@ export default function CommercialProjectsAdminPanel({ projects }: CommercialPro
           id: editingProject.id,
           project: projectData,
         });
-        toast.success('Project updated successfully');
+        toast.success(COPY.admin.successUpdate);
       } else {
         await createProject.mutateAsync(projectData);
-        toast.success('Project created successfully');
+        toast.success(COPY.admin.successCreate);
       }
       handleCloseDialog();
     } catch (error: any) {
-      const errorMessage = error?.message || 'An error occurred';
+      const errorMessage = error?.message || 'Unknown error';
       if (errorMessage.includes('Unauthorized')) {
-        toast.error('Unauthorized: Only admins can manage projects');
+        toast.error(COPY.admin.errorUnauthorized);
       } else {
-        toast.error(`Failed to ${editingProject ? 'update' : 'create'} project: ${errorMessage}`);
+        const action = editingProject ? 'update' : 'create';
+        toast.error(COPY.admin.errorCreateUpdate.replace('{action}', action) + `: ${errorMessage}`);
       }
     }
   };
 
   const handleDelete = async (id: bigint) => {
-    if (!confirm('Are you sure you want to delete this project?')) return;
+    if (!confirm(COPY.admin.deleteConfirm)) return;
 
     try {
       await deleteProject.mutateAsync(id);
-      toast.success('Project deleted successfully');
+      toast.success(COPY.admin.successDelete);
     } catch (error: any) {
-      const errorMessage = error?.message || 'An error occurred';
+      const errorMessage = error?.message || 'Unknown error';
       if (errorMessage.includes('Unauthorized')) {
-        toast.error('Unauthorized: Only admins can delete projects');
+        toast.error(COPY.admin.errorUnauthorized);
       } else {
-        toast.error(`Failed to delete project: ${errorMessage}`);
+        toast.error(`${COPY.admin.errorDelete}: ${errorMessage}`);
       }
     }
   };
@@ -126,32 +128,30 @@ export default function CommercialProjectsAdminPanel({ projects }: CommercialPro
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-xl">Manage Commercial Projects</CardTitle>
-              <CardDescription>Add, edit, or remove project listings</CardDescription>
+              <CardTitle className="text-xl">{COPY.admin.panelTitle}</CardTitle>
+              <CardDescription>{COPY.admin.panelDescription}</CardDescription>
             </div>
             <Button onClick={() => handleOpenDialog()} className="gap-2">
               <Plus className="h-4 w-4" />
-              Add Project
+              {COPY.admin.addProject}
             </Button>
           </div>
         </CardHeader>
         <CardContent>
           {projects.length === 0 ? (
             <p className="text-center text-muted-foreground py-8">
-              No projects yet. Click "Add Project" to create your first listing.
+              {COPY.admin.noProjects}
             </p>
           ) : (
             <div className="space-y-3">
               {projects.map((project) => (
                 <div
                   key={project.id.toString()}
-                  className="flex items-center justify-between p-4 rounded-lg border border-border bg-background/50"
+                  className="flex items-center justify-between p-4 rounded-lg border border-border/40 bg-background/50"
                 >
                   <div className="flex-1">
                     <h4 className="font-semibold text-foreground">{project.title}</h4>
-                    <p className="text-sm text-muted-foreground">
-                      {project.location} • {project.carpetArea} • {project.price}
-                    </p>
+                    <p className="text-sm text-muted-foreground">{project.location}</p>
                   </div>
                   <div className="flex items-center gap-2">
                     <Button
@@ -160,8 +160,8 @@ export default function CommercialProjectsAdminPanel({ projects }: CommercialPro
                       onClick={() => handleOpenDialog(project)}
                       className="gap-2"
                     >
-                      <Edit className="h-3.5 w-3.5" />
-                      Edit
+                      <Edit className="h-4 w-4" />
+                      {COPY.admin.editProject}
                     </Button>
                     <Button
                       variant="destructive"
@@ -169,8 +169,8 @@ export default function CommercialProjectsAdminPanel({ projects }: CommercialPro
                       onClick={() => handleDelete(project.id)}
                       className="gap-2"
                     >
-                      <Trash2 className="h-3.5 w-3.5" />
-                      Delete
+                      <Trash2 className="h-4 w-4" />
+                      {COPY.admin.deleteProject}
                     </Button>
                   </div>
                 </div>
@@ -183,99 +183,88 @@ export default function CommercialProjectsAdminPanel({ projects }: CommercialPro
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle>{editingProject ? 'Edit Project' : 'Add New Project'}</DialogTitle>
+            <DialogTitle>
+              {editingProject ? COPY.admin.editProject : COPY.admin.addProject}
+            </DialogTitle>
             <DialogDescription>
-              {editingProject
-                ? 'Update the project details below'
-                : 'Fill in the details for the new commercial project'}
+              {editingProject ? COPY.admin.panelDescription : COPY.admin.panelDescription}
             </DialogDescription>
           </DialogHeader>
+
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="title">Project Title *</Label>
+              <Label htmlFor="title">{COPY.admin.formTitle}</Label>
               <Input
                 id="title"
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                placeholder="e.g., Premium Office Space"
                 required
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="location">Location *</Label>
+              <Label htmlFor="location">{COPY.admin.formLocation}</Label>
               <Input
                 id="location"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                placeholder="e.g., Hinjewadi, Pune"
                 required
               />
             </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="carpetArea">Carpet Area *</Label>
+                <Label htmlFor="carpetArea">{COPY.admin.formCarpetArea}</Label>
                 <Input
                   id="carpetArea"
                   value={formData.carpetArea}
                   onChange={(e) => setFormData({ ...formData, carpetArea: e.target.value })}
-                  placeholder="e.g., 1200 sq ft"
                   required
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="price">Price *</Label>
+                <Label htmlFor="price">{COPY.admin.formPrice}</Label>
                 <Input
                   id="price"
                   value={formData.price}
                   onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                  placeholder="e.g., ₹95 Lakhs"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="highlights">Highlights</Label>
+              <Label htmlFor="highlights">{COPY.admin.formHighlights}</Label>
               <Textarea
                 id="highlights"
                 value={formData.highlights}
                 onChange={(e) => setFormData({ ...formData, highlights: e.target.value })}
-                placeholder="Enter highlights separated by commas (e.g., Ready to Move, Prime Location, High ROI)"
+                placeholder={COPY.admin.formHighlightsHelp}
                 rows={3}
-              />
-              <p className="text-xs text-muted-foreground">
-                Separate multiple highlights with commas
-              </p>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="contactDetails">Contact Button Text *</Label>
-              <Input
-                id="contactDetails"
-                value={formData.contactDetails}
-                onChange={(e) => setFormData({ ...formData, contactDetails: e.target.value })}
-                placeholder="e.g., Get Best Price"
                 required
               />
             </div>
 
-            <DialogFooter className="gap-2">
+            <div className="space-y-2">
+              <Label htmlFor="contactDetails">{COPY.admin.formContactDetails}</Label>
+              <Input
+                id="contactDetails"
+                value={formData.contactDetails}
+                onChange={(e) => setFormData({ ...formData, contactDetails: e.target.value })}
+                required
+              />
+            </div>
+
+            <DialogFooter>
               <Button type="button" variant="outline" onClick={handleCloseDialog}>
-                <X className="h-4 w-4 mr-2" />
-                Cancel
+                {COPY.admin.cancelButton}
               </Button>
               <Button
                 type="submit"
                 disabled={createProject.isPending || updateProject.isPending}
               >
-                {createProject.isPending || updateProject.isPending
-                  ? 'Saving...'
-                  : editingProject
-                  ? 'Update Project'
-                  : 'Create Project'}
+                {COPY.admin.saveButton}
               </Button>
             </DialogFooter>
           </form>

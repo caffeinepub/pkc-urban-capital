@@ -46,7 +46,7 @@ export default function WhyInvestPuneSection() {
                 className="group relative overflow-hidden rounded-lg border border-border/40 bg-card p-6 md:p-8 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5"
               >
                 <div className="flex gap-4">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 border border-primary/20 group-hover:bg-primary/20 transition-colors">
                       <Icon className="h-6 w-6 text-primary" />
                     </div>
